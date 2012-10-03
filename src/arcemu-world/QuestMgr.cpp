@@ -1039,7 +1039,9 @@ void QuestMgr::GiveQuestRewardReputation(Player* plr, Quest* qst, Object* qst_gi
 
 void QuestMgr::OnQuestAccepted(Player* plr, Quest* qst, Object* qst_giver)
 {
-
+	if( qst_giver->IsCreature() )
+	TO<Creature*>(qst_giver)->HandleMonsterSayEvent(MONSTER_SAY_EVENT_ON_QUEST_STARTED);
+ 
 }
 
 void QuestMgr::OnQuestFinished(Player* plr, Quest* qst, Object* qst_giver, uint32 reward_slot)
@@ -1370,6 +1372,10 @@ void QuestMgr::OnQuestFinished(Player* plr, Quest* qst, Object* qst_giver, uint3
 				plr->AddToFinishedQuests((*iter));
 		}
 	}
+	
+	//Some Quest givers talk in the end of the quest.
+	if( qst_giver->IsCreature() )
+		TO<Creature*>(qst_giver)->HandleMonsterSayEvent(MONSTER_SAY_EVENT_ON_QUEST_FINISHED);
 
 	if( qst->MailTemplateId != 0 )
 	{

@@ -4851,6 +4851,88 @@ int32 Spell::DoCalculateEffect(uint32 i, Unit* target, int32 value)
 				}
 				break;
 			}
+					case SPELL_HASH_BLOOD_PLAGUE:{
+			if( p_caster != NULL )
+				value += float2int32(p_caster->GetAP() * 0.055f);
+			break;
+		}
+		case SPELL_HASH_DEATH_COIL:{
+			if( GetProto()->SpellFamilyName != SPELLFAMILY_DEATHKNIGHT )
+				break;
+
+			if( p_caster != NULL )
+				value += float2int32(p_caster->GetAP() * 0.15f);
+		break;
+		}
+		case SPELL_HASH_ICY_TOUCH:{
+			if( p_caster != NULL )
+				value += float2int32(p_caster->GetAP() * 0.1f);
+			break;
+		}
+		case SPELL_HASH_FROST_FEVER:{
+			if( p_caster != NULL )
+				value += float2int32(p_caster->GetAP() * 0.055f);
+			break;
+		}
+		case SPELL_HASH_BLOOD_BOIL:{
+			if( p_caster != NULL )
+				value += value += float2int32(p_caster->GetAP() * 0.06f);
+
+			// damage is increased if target has at least 1 disease
+			if( target != NULL && ( target->HasAurasWithNameHash(SPELL_HASH_FROST_FEVER) 
+				|| target->HasAurasWithNameHash(SPELL_HASH_BLOOD_PLAGUE)
+				|| target->HasAurasWithNameHash(SPELL_HASH_CRYPT_FEVER)
+				|| target->HasAurasWithNameHash(SPELL_HASH_EBON_PLAGUE) ) )
+			{
+				// additional 3.5 % of AP
+				value += float2int32(p_caster->GetAP() * 0.035f);
+				// additional 95 flat damage, based on testing on retail
+				value += 95;
+			}
+
+			break;
+		}
+		case SPELL_HASH_DEATH_AND_DECAY:{
+			if( p_caster != NULL )
+				value += float2int32(p_caster->GetAP() * 0.0475f);
+			break;
+		}
+		case SPELL_HASH_OBLITERATE:{
+			// total damage increased 12.5% per each of your diseases on the target,
+			// but consumes the diseases.
+			if( target != NULL )
+			{
+				float increase = 0.0f;
+				if( target->HasAurasWithNameHash(SPELL_HASH_FROST_FEVER) )
+				{
+					increase += 0.125f;
+					target->RemoveAllAuraByNameHash(SPELL_HASH_FROST_FEVER);
+				}
+
+				if( target->HasAurasWithNameHash(SPELL_HASH_BLOOD_PLAGUE) )
+				{
+					increase += 0.125f;
+					target->RemoveAllAuraByNameHash(SPELL_HASH_BLOOD_PLAGUE);
+				}
+
+				if( target->HasAurasWithNameHash(SPELL_HASH_CRYPT_FEVER) )
+				{
+					increase += 0.125f;
+					target->RemoveAllAuraByNameHash(SPELL_HASH_CRYPT_FEVER);
+				}
+
+				if( target->HasAurasWithNameHash(SPELL_HASH_EBON_PLAGUE) )
+				{
+					increase += 0.125f;
+					target->RemoveAllAuraByNameHash(SPELL_HASH_EBON_PLAGUE);
+				}
+
+				value += float2int32(increase * value);
+			}
+			break;
+		}
+			
+			
 		default:
 			{
 				//not handled in this switch
