@@ -3113,6 +3113,23 @@ void Aura::SpellAuraPeriodicTriggerSpell(bool apply)
 
 void Aura::EventPeriodicTriggerSpell(SpellEntry* spellInfo, bool overridevalues, int32 overridevalue)
 {
+	Unit* u_caster = GetUnitCaster();
+
+	if(spellInfo->NameHash == SPELL_HASH_MIND_SEAR)
+	{
+		Spell *spell = sSpellFactoryMgr.NewSpell(u_caster, spellInfo, true, this);
+		SpellCastTargets targets;
+		//Mind Sear hackz
+		targets.m_unitTarget = m_target->GetGUID();
+		targets.m_destX = m_target->GetPositionX();
+		targets.m_destY = m_target->GetPositionY();
+		targets.m_destZ = m_target->GetPositionZ();
+		spell->prepare(&targets);
+		return; 
+		}
+	}
+	else
+	{
 	Spell* spell = sSpellFactoryMgr.NewSpell(m_target, spellInfo, true, this);
 	if(overridevalues)
 	{

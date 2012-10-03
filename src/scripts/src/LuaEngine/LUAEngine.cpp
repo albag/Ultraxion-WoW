@@ -280,9 +280,9 @@ void LuaEngine::PushUnit(Object* unit, lua_State* L)
 	if(unit != NULL && unit->IsUnit())
 		pUnit = TO_UNIT(unit);
 	if(L == NULL)
-		ArcLuna<Unit>::push(lu, pUnit);
+		ArcSole<Unit>::push(lu, pUnit);
 	else
-		ArcLuna<Unit>::push(L, pUnit);
+		ArcSole<Unit>::push(L, pUnit);
 }
 void LuaEngine::PushGo(Object* go, lua_State* L)
 {
@@ -290,9 +290,9 @@ void LuaEngine::PushGo(Object* go, lua_State* L)
 	if(go != NULL && go->IsGameObject())
 		pGo = TO< GameObject* >(go);
 	if(L == NULL)
-		ArcLuna<GameObject>::push(lu, pGo);
+		ArcSole<GameObject>::push(lu, pGo);
 	else
-		ArcLuna<GameObject>::push(L, pGo);
+		ArcSole<GameObject>::push(L, pGo);
 }
 void LuaEngine::PushItem(Object* item, lua_State* L)
 {
@@ -586,9 +586,9 @@ void LuaEngine::RegisterCoreFunctions()
 
 	RegisterGlobalFunctions(lu);
 
-	ArcLuna<Unit>::Register(lu);
+	ArcSole<Unit>::Register(lu);
 	ArcLuna<Item>::Register(lu);
-	ArcLuna<GameObject>::Register(lu);
+	ArcSole<GameObject>::Register(lu);
 	ArcLuna<WorldPacket>::Register(lu);
 	ArcLuna<TaxiPath>::Register(lu);
 	ArcLuna<Spell>::Register(lu);

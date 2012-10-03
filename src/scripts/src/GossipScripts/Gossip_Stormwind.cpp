@@ -68,8 +68,33 @@ class SWHarborFlyAround : public Arcemu::Gossip::Script
 		void Destroy() { delete this; }
 };
 
+class IanDrake : public Arcemu::Gossip::Script
+{
+public:
+       void OnHello(Object * pObject, Player* Plr)
+       {
+               Arcemu::Gossip::Menu menu(pObject->GetGUID(), 13441);
+               menu.AddItem(Arcemu::Gossip::ICON_CHAT, "I would like to whisper my secret code to you to receive Tyrael's Hilt.", 1, 0, "", true);
+               menu.Send(Plr);
+       }
+
+       void OnSelectOption(Object * pObject, Player* Plr, uint32 Id, const char * Code)
+       {
+               Arcemu::Gossip::Menu::Complete(Plr);
+               if (Id == 1)
+               {
+                       Plr->GetItemInterface()->CalculateFreeSlots(ItemPrototypeStorage.LookupEntry(39656));
+                       Plr->GetItemInterface()->AddItemToFreeSlot(objmgr.CreateItem(39656, Plr));              // Tyrael's Hilt
+               }
+
+       }
+};
+
+
+
 void SetupStormwindGossip(ScriptMgr* mgr)
 {
-	mgr->register_creature_gossip(2708, new ArchmageMalin_Gossip); // Archmage Malin
-	mgr->register_creature_gossip(29154, new SWHarborFlyAround);
+       mgr->register_creature_gossip(2708,  new ArchmageMalin_Gossip); // Archmage Malin
+       mgr->register_creature_gossip(29154, new SWHarborFlyAround);   // Thargold Ironwing
+       mgr->register_creature_gossip(29093, new IanDrake);           // Ian Drake
 }
