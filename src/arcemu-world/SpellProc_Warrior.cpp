@@ -46,6 +46,7 @@ class DamageShieldSpellProc : public SpellProc
 		}
 };
 
+	
 
 class JuggernautSpellProc : public SpellProc{
 	SPELL_PROC_FACTORY_FUNCTION( JuggernautSpellProc );
@@ -61,8 +62,30 @@ class JuggernautSpellProc : public SpellProc{
 	}
 };
 
+class TasteOfBloodSpellProc : public SpellProc
+{
+	SPELL_PROC_FACTORY_FUNCTION( TasteOfBloodSpellProc );
+
+	bool CanProc(Unit* victim, SpellEntry* CastingSpell)
+	{
+		if( CastingSpell == NULL )
+			return false;
+		if( CastingSpell->NameHash != SPELL_HASH_REND )
+			return false;
+		return true;
+	}
+
+	bool DoEffect(Unit* victim, SpellEntry* CastingSpell, uint32 flag, uint32 dmg, uint32 abs, int* dmg_overwrite, uint32 weapon_damage_type)
+	{
+		if(!(flag & PROC_ON_SPELL_HIT))
+			return true;
+		return false;
+	}
+};
 void SpellProcMgr::SetupWarrior()
 {
 	AddByNameHash(SPELL_HASH_DAMAGE_SHIELD, &DamageShieldSpellProc::Create);
 	AddById( 65156, &JuggernautSpellProc::Create );
 }
+
+
