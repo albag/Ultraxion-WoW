@@ -2526,6 +2526,13 @@ uint32 Unit::HandleProc(uint32 flag, Unit* victim, SpellEntry* CastingSpell, boo
 									continue;
 							}
 							break;
+						case 53489:
+						case 59578: // The Art of War (Paladin talent) should disappear only from flash of light or exorcism
+							{
+								if(CastingSpell->NameHash != SPELL_HASH_FLASH_OF_LIGHT || CastingSpell->NameHash != SPELL_HASH_EXORCISM)
+									continue;
+							}
+							break;
 						case 65156: // Juggernaut
 							{
 								if(CastingSpell->NameHash != SPELL_HASH_MORTAL_STRIKE &&
@@ -4286,7 +4293,10 @@ void Unit::AddAura(Aura* aur)
 		}
 	}
 
-	if(aur->GetSpellProto()->School && SchoolImmunityList[aur->GetSpellProto()->School])
+		if(aur->GetSpellProto()->School && SchoolImmunityList[aur->GetSpellProto()->School] 
+	&& !aur->IsPositive() && aur->GetSpellProto()->Attributes && aur->GetSpellProto()->Attributes != ATTRIBUTES_IGNORE_INVULNERABILITY)
+	// basically if aura is not positive and aura does not have ignore invulnerability flag, delete aura
+
 	{
 		delete aur;
 		return;
@@ -8100,11 +8110,9 @@ bool Unit::IsCriticalDamageForSpell(Object* victim, SpellEntry* spell)
 	if(victim->IsUnit()
 		&& spell->NameHash == SPELL_HASH_LAVA_BURST
 		&& ( fs = TO< Unit* >(victim)->FindAuraByNameHash(SPELL_HASH_FLAME_SHOCK) ) != NULL)
-	{
+	
 		result = true;
-		if( !HasAura(55447) )	// Glyph of Flame Shock
-			fs->Remove();
-	}
+		
 
 	return result;
 }

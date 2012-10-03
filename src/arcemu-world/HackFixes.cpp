@@ -2300,11 +2300,23 @@ void ApplyNormalFixes()
 	if(sp != NULL)
 		sp->procFlags = PROC_ON_CAST_SPELL;
 
+		//Paladin - Avenging Wrath marker - Is forced debuff
+	sp = CheckAndReturnSpellEntry(61987);
+	if(sp != NULL)
+	{
+		sp->c_is_flags = SPELL_FLAG_IS_FORCEDDEBUFF;
+		sp->Attributes = ATTRIBUTES_IGNORE_INVULNERABILITY;
+	}
+		
 	//Paladin - Crusader Strike
 	sp = CheckAndReturnSpellEntry(35395);
 	if(sp != NULL)
-		sp->noproc = true;
-
+	{
+		sp->c_is_flags = SPELL_FLAG_IS_FORCEDDEBUFF;
+		sp->Attributes = ATTRIBUTES_IGNORE_INVULNERABILITY;
+	}
+		
+		
 	//Paladin - Forbearance - Is forced debuff
 	sp = CheckAndReturnSpellEntry(25771);
 	if(sp != NULL)
@@ -3356,11 +3368,12 @@ void ApplyNormalFixes()
 		sp->EffectApplyAuraName[0] = SPELL_AURA_PROC_TRIGGER_SPELL;
 		sp->EffectTriggerSpell[0] = 33619; //!! WRONG spell, we will make direct dmg here
 	}
-	// Weakened Soul - Is forced debuff
+	// Weakened Soul - is debuff
 	sp = CheckAndReturnSpellEntry(6788);
 	if(sp != NULL)
 	{
 		sp->c_is_flags = SPELL_FLAG_IS_FORCEDDEBUFF;
+		sp->Attributes = ATTRIBUTES_IGNORE_INVULNERABILITY;
 	}
 
 	// Penance
@@ -3510,10 +3523,13 @@ void ApplyNormalFixes()
 	if(sp != NULL)
 		sp->casterAuraSpellNot = 57724; //sated debuff
 
-	//Sated
+	//Sated is debuff
 	sp = CheckAndReturnSpellEntry(57724);
 	if(sp != NULL)
-		sp->c_is_flags |= SPELL_FLAG_IS_FORCEDDEBUFF;
+{
+		sp->c_is_flags = SPELL_FLAG_IS_FORCEDDEBUFF;
+		sp->Attributes = ATTRIBUTES_IGNORE_INVULNERABILITY;
+}
 
 	/**********************************************************
 	 *	Heroism
@@ -3526,7 +3542,10 @@ void ApplyNormalFixes()
 	//Sated
 	sp = CheckAndReturnSpellEntry(57723);
 	if(sp != NULL)
-		sp->c_is_flags |= SPELL_FLAG_IS_FORCEDDEBUFF;
+	{
+		sp->c_is_flags = SPELL_FLAG_IS_FORCEDDEBUFF;
+		sp->Attributes = ATTRIBUTES_IGNORE_INVULNERABILITY;
+	}
 
 	/**********************************************************
 	 *	Lightning Overload
@@ -4345,10 +4364,20 @@ void ApplyNormalFixes()
 	if(sp != NULL)
 		sp->EffectImplicitTargetA[0] = EFF_TARGET_DYNAMIC_OBJECT;
 
-	// Hypothermia: undispellable
+	// Hypothermia: forced debuff
 	sp = CheckAndReturnSpellEntry(41425);
 	if(sp != NULL)
+	{
+ 		sp->c_is_flags = SPELL_FLAG_IS_FORCEDDEBUFF;
+		sp->Attributes = ATTRIBUTES_IGNORE_INVULNERABILITY;
+	}
+	// Recently Bandaged - is debuff
+	sp = CheckAndReturnSpellEntry(11196);
+	if(sp != NULL)
+	{
 		sp->c_is_flags = SPELL_FLAG_IS_FORCEDDEBUFF;
+		sp->Attributes = ATTRIBUTES_IGNORE_INVULNERABILITY;
+	}
 
 	// Mage - Permafrost Rank 1
 	sp = CheckAndReturnSpellEntry(11175);
