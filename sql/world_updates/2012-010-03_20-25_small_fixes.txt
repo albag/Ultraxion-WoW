@@ -1,0 +1,37 @@
+/*
+Some Small Fixes to The database
+
+*/
+
+
+ALTER TABLE npc_text_localized CHANGE `language_code` `language_code` VARCHAR( 5 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text0 text0 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text1 text1 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text2 text2 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text3 text3 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text4 text4 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text5 text5 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text6 text6 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text7 text7 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text0_1 text0_1 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text1_1 text1_1 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text2_1 text2_1 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text3_1 text3_1 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text4_1 text4_1 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text5_1 text5_1 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text6_1 text6_1 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+ALTER TABLE npc_text_localized CHANGE text7_1 text7_1 LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+
+UPDATE quests SET RequiredRaces=5 WHERE entry=1641;
+
+-- correct flags / now they Should the new own flags.
+UPDATE quests SET flags=0 WHERE entry=1641;
+UPDATE quests SET flags=0 WHERE entry=1643;
+UPDATE quests SET flags=0 WHERE entry=1650;
+UPDATE quests SET flags=0 WHERE entry=1653;
+UPDATE quests SET flags=0 WHERE entry=133;
+
+--- make the quest Repeatable
+UPDATE quests SET IsRepeatable=1 WHERE entry=1790;
+UPDATE quests SET IsRepeatable=1 WHERE entry=1793;
+UPDATE quests SET RequiredQuest1=0 WHERE entry=12589; -- not necessary prequest
