@@ -36,8 +36,8 @@
 #define CN_SHIRRAK_THE_DEAD_WATCHER 18371
 
 #define INHIBIT_MAGIC		32264
-#define CARNIVOROUS_BITE	41092 // Also can be: 36383 or 41092
-#define FOCUS_FIRE			32310 // not fully functional for now =/ Let's try: 32310, 32301 or 32300	- needs further researches
+#define CARNIVOROUS_BITE	36383 // Also can be: 36383 or 41092 41092 = not so good ( we will use 3683 much better)
+#define FOCUS_FIRE			32300 // fully functional now 
 #define ATTRACT_MAGIC		32265 // doesn't work anyway
 // Hmmm... next boss without sounds?
 
@@ -226,7 +226,7 @@ class SHIRRAKTHEDEADWATCHERAI : public CreatureAIScript
 #define CN_AVATAR_OF_THE_MARTYRED 18478
 
 #define SUNDER_ARMOR	16145
-#define MORTAL_STRIKE	15708	// not sure to spells ofc :)
+#define MORTAL_STRIKE	16856	// should work now  just need some lookup at mortal strike 
 #define PHASE_IN		33422
 
 class AvatarOfTheMartyredAI : public CreatureAIScript
@@ -282,7 +282,7 @@ class AvatarOfTheMartyredAI : public CreatureAIScript
 		{
 			_unit->GetAIInterface()->setCurrentAgent(AGENT_NULL);
 			_unit->GetAIInterface()->SetAIState(STATE_IDLE);
-			//RemoveAIUpdateEvent();
+			RemoveAIUpdateEvent(); //Why was this left out in the first place? :S
 		}
 
 		void OnDied(Unit* mKiller)
@@ -386,7 +386,7 @@ class EXARCHMALADAARAI : public CreatureAIScript
 			spells[0].attackstoptimer = 1000;
 			spells[0].cooldown = 15;
 			spells[0].soundid = 10510;
-			spells[0].speech = "Let your mind be clouded.";	// dunno for sure if it should be here, but still gives better effect of fight :)
+			
 
 			spells[1].info = dbcSpell.LookupEntry(RIBBON_OF_SOULS);
 			spells[1].targettype = TARGET_RANDOM_SINGLE;
@@ -397,8 +397,7 @@ class EXARCHMALADAARAI : public CreatureAIScript
 			spells[1].mindist2cast = 0.0f;
 			spells[1].maxdist2cast = 40.0f;
 			spells[1].soundid = 10511;
-			spells[1].speech = "Stare into the darkness of your soul!"; // not sure if it's really "stand"
-
+			
 			spells[2].info = dbcSpell.LookupEntry(STOLEN_SOUL);
 			spells[2].targettype = TARGET_RANDOM_SINGLE;
 			spells[2].instant = false;
@@ -414,7 +413,21 @@ class EXARCHMALADAARAI : public CreatureAIScript
 			spells[3].perctrigger = 0.0f;
 			spells[3].attackstoptimer = 1000;
 			spells[3].cooldown = -1;
-
+		
+		int rSpeech = rand()%3;
+		switch (rSpeech)
+		{
+			case 0: 
+				spells[3].speech = "Rise, my fallen brothers. Take form and fight!";
+				break;
+			case 1:
+				spells[3].speech = "Let your mind be clouded.";
+				break;
+			case 2:
+				spells[3].speech = "Stare into the darkness of your soul.";
+				break;
+		}	
+		
 			Avatar = false;
 		}
 

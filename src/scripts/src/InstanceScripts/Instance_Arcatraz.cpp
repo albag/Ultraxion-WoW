@@ -29,8 +29,8 @@
 #define CN_ZEREKETH			20870
 #define CN_VOIDZONEARC		21101
 
-#define SEED_OF_C			36123	//32865, 36123
-#define SHADOW_NOVA			36127 // 30533, 39005, 36127 (normal mode), 39005 (heroic mode?)
+#define SEED_OF_C			32863 // 
+#define SHADOW_NOVA			36127 // (heroic mode?) is on now.
 #define SHADOW_NOVA_H		39005
 #define CONSUMPTION			30498
 #define CONSUMPTION_H		39004
