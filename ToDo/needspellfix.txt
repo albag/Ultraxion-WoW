@@ -1,0 +1,164 @@
+MAGE:
+Spells:
+Mirror Image - no support for that spell
+
+Arcane:
+All should work.
+
+Fire:
+Burning Determination - should work, need tests
+
+Frost:
+Frost Warding - may work, test it
+Fingers of Frost - looks ok but wasn't tested with all spells
+
+PRIEST:
+Spells:
+Mind Vision - only on small range
+
+Discipline:
+All should work.
+
+Holy:
+Lightwell - needs vehicle system
+
+Shadow:
+All should work.
+
+ROGUE:
+Spells:
+Dismantle - TODO auras
+Stealh - chance to see player
+
+Talents:
+
+Assasination:
+Turn the Tables - works on self, needs test in party
+Quick Recovery - should work, refunding energy needs test
+
+Combat:
+Nerves of Steel - test if it works properly
+Killing Spree - TODO whole spell
+
+Subtlety:
+Honor Among Thieves - works on self, needs test in party
+
+WARRIOR:
+Spells:
+Intercept - should work, test it
+
+Arms:
+Juggernaut - http://www.wowhead.com/?spell=64976 Effect[0] need to be fixed.
+
+Fury:
+All should work.
+Titan's grip - decrease dmg while we have 2h weapon in main hand and 1h weapon in offhand
+
+Protection:
+Warbringer - aurastate only
+Vigilance - may work, redirecting need tests
+
+DRUID:
+Spell:
+Wild Growth - needs test in party
+
+Talents:
+
+Balance:
+Typhoon - knockback effect works only in pvp, it can't work in pve, isn't range too huge?
+Balance of Power - temp fix, value is still not proper
+Force of nature - 2nd and 3rd treant can't be controled by pet bar
+Brambles - no daze effect from treants
+
+Feral:
+Primal Precision - should work, test it in pvp(easier to dodge/parry/miss)
+Primal Tenacity - probably does not decrease dmg but i'm not sure...
+Berserk - 1 target for mangle(bear)
+
+Restoration:
+Furor - chance to add energy than keep energy
+Tree of life - to get http://www.wowhead.com/?spell=5420 you need to relog
+Improved Barkskin - no armor bonus while not shapeshifted
+
+PALADIN:
+Spells:
+Seal of Vengeance and Corruption - TEST: 33% bonus damage when target has 5 stacks of debuff
+
+Talents:
+
+Holy:
+Seals of the Pure - no bonus for seal of righteroussnes
+Beacon of Light - should work test it
+
+Protection:
+Divine Sacrifice - is not wokring, check in party
+
+Retribution:
+Pursuit of Justice - should work test it
+Sanctified Wrath - procs but needs aura 194 and 269
+Divine Purpose - should work test it
+
+SHAMAN
+Spells:
+
+Weapon enchants:
+Casting enchants freezes combat log.
+Windfury Weapon - requires rebuff to get bonus ap
+
+Totems:
+Totem of Wrath - effects 128 and 129
+Sentry Totem - is not working
+
+Talents:
+
+Elemental Combat:
+Elemental Oath - 2nd effect may not work
+Astral Shift - test it
+Improved Fire Nova Totem - stunt effect
+
+Enhancement:
+Earthen Power - should work, test it
+Static Shock - dummy
+Feral Spirit - 2nd wolf can't be controled by pet bar
+
+Restoration:
+Blessing of the Eternals - should work, test it
+Nature's Guardian - decrease thread effect
+
+HUNTER:
+Spells:
+Feign Death - can it be resisted?
+Track Hidden - test it
+Freezing Arrow - TODO: spell target 87
+
+Talents:
+
+Beast Mastery:
+Will be tested later.
+
+Marksmanship:
+Readiness - Bestial Wrath exception?
+Marked for Death - pet part
+
+Survival:
+Noxious Stings - should work, test it
+Hunting Party - should work, test it
+
+WARLOCK:
+Spells:
+Demonic Circle: Teleport - teleporting + allow cast
+Eye of Kilrogg - vision on short range CMSG_FAR_SIGHT
+
+Talents:
+
+Affliction:
+Shadow Embrace - aura 259 TODO
+Improved Felhunter - TODO
+
+Demonology:
+Will be tested later.
+
+Destruction:
+Improved Soul Leech - dummy
+Nether Protection - should work, test it
+Chaos Bolt - should work, test it
