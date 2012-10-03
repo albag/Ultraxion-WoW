@@ -73,11 +73,20 @@ void InnkeeperGossip::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, co
 	Creature* pCreature = (pObject->IsCreature()) ? (TO_CREATURE(pObject)) : NULL;
 	if(pCreature == NULL)
 		return;
-
+	SlotResult slotresult;
 	switch(Id)
 	{
 		case 1:     // VENDOR
 			Plr->GetSession()->SendInventoryList(pCreature);
+     if(Plr->GetItemInterface()->GetItemCount(6948, false) == 0)
+      {
+	  ItemPrototype* proto = ItemPrototypeStorage.LookupEntry(6948);
+          if(!proto)
+            return;
+        slotresult = Plr->GetItemInterface()->FindFreeInventorySlot(proto);
+ 	    Item* itm = objmgr.CreateItem(6948, Plr);
+ 	    Plr->GetItemInterface()->SafeAddItem(itm, slotresult.ContainerSlot, slotresult.Slot);
+      }
 			break;
 		case 2:     // BINDER
 			Plr->GetSession()->SendInnkeeperBind(pCreature);
