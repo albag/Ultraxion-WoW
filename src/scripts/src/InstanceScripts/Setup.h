@@ -75,6 +75,7 @@ void SetupOnyxiasLair(ScriptMgr* mgr);
 void SetupTheEye(ScriptMgr* mgr);
 void SetupTheObsidianSanctum(ScriptMgr* mgr);
 void SetupUlduar(ScriptMgr* mgr);
+void SetupICCTele(ScriptMgr* mgr);
 void SetupZulFarrak(ScriptMgr* mgr);
 void SetupZulGurub(ScriptMgr* mgr);
 void SetupSerpentshrineCavern(ScriptMgr* mgr);

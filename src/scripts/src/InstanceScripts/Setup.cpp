@@ -78,6 +78,7 @@ extern "C" SCRIPT_DECL void _exp_script_register(ScriptMgr* mgr)	// Comment any 
 	SetupTheEye(mgr);
 	SetupTheObsidianSanctum(mgr);
 	SetupUlduar(mgr);
+	SetupICCTele(mgr);
 	SetupZulFarrak(mgr);
 	SetupZulGurub(mgr);
 	SetupSerpentshrineCavern(mgr);
