@@ -1,6 +1,6 @@
 MAGE:
 Spells:
-Mirror Image - no support for that spell
+Mirror Image - no support for that spell i got a small fix for that
 
 Arcane:
 All should work.
@@ -162,3 +162,20 @@ Destruction:
 Improved Soul Leech - dummy
 Nether Protection - should work, test it
 Chaos Bolt - should work, test it
+
+
+--- 
+
+IcecrownCitadel - Teleporter Work now
+IcecrownCitadel - need to add items to the bosses 
+IcecrownCitadel - Need to script the bosses and trash
+
+
+--- 
+Need to Lookop 
+Instance_BlackrockDepths Still need work
+Instance_Black_template still need alot of work
+Instance_Nexus Wrong ids 
+
+
+--- 
